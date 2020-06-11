@@ -1,0 +1,228 @@
+html{
+    height:100%;
+    overflow:hidden;
+}
+#loading{
+    position:fixed;
+    width:100%;
+    height: 100vh;
+    background: #fff 
+    url('images/Double Ring-1s-200px.gif')
+    no-repeat center;
+    z-index: 99999;
+}
+
+body{
+    color:#fff;
+    margin:0;
+    padding:0;
+    perspective:1px;
+    transform-style: preserve-3d;
+    height:100%;
+    overflow-y: scroll;
+    overflow-x:hidden;
+    
+}
+header{
+    box-sizing: border-box;
+    min-height: 100vh;
+    padding:30vw 0 5vw;
+    position :relative;
+    transform-style: inherit;
+    width:100vw;
+   
+}
+header h1{
+    margin-top: -100px;
+}
+header,header:before{
+    background: 50% 50% / cover;
+}
+header::before{
+    bottom:0;
+    content:"";
+    left:0;
+    position: absolute;
+    right:0;
+    top:0;
+    display:block;
+    background-image: url("images/laurenz-heymann-oeUioo29Q14-unsplash.jpg");
+    background-size: cover;
+    transform-origin: center center 0;
+    transform:translateZ(-1px) scale(2);
+    z-index:-1;
+    min-height:100vh;
+} 
+header *{
+    font-weight: normal;
+    letter-spacing: 0.2em;
+    text-align: center;
+}
+.header-block{
+    width:100%;
+    height:100%;
+    background: rgba(0,0,0,.6);
+}
+.text{
+    position: absolute;
+    top:30%;
+    left:50%;
+    color:#fff;
+    z-index:22222;
+    width:500px;
+    height: 300px;
+    background: transparent;
+}
+.text:before{
+    content:'';
+    position: absolute;
+    top: -5px;
+    left:7%;
+    transform:translate(-50%,-50%);
+    width:70px;
+    height:5px;
+    background: #e74c3c;
+}
+.text h1{
+    margin:0;
+    padding:0;
+    font-weight:700;
+    color:#e74c3c;
+    font-size: 50px;
+}
+.text h1 span{
+    font-weight: normal;
+    color:#F2F2F2;
+    font-family: 'Hind Siliguri', sans-serif;
+}
+.text p{
+    padding:20px 50px 20px 0;
+    line-height: 22px;
+    color:#F2F2F2;
+    font-family: 'Caveat', cursive;
+}
+
+button{
+    border:none;
+    background: transparent;
+    color:#fff;
+    border:1px solid #fff;
+    font-size: 16px;
+    padding:10px 30px;
+    border-radius: 5px;
+    transition: 0.3s;
+    text-transform: uppercase;
+}
+.upcoming-events{
+    width:170px;
+}
+.ongoing-events{
+    background: #e74c3c;
+    border:1px solid #e74c3c;
+    margin-right: 20px;
+    width:170px;
+}
+.ongoing-events:hover{
+    border:1px solid #fff;
+    background: #fff;
+    color:#000;
+    transition: .3s;
+}
+.upcoming-events:hover{
+    background: #e74c3c;
+    border:1px solid #e74c3c;
+    transition: .3s;
+}
+h2{
+    color:#e74c3c
+}
+@media(max-width:990px){
+    .text{
+       width:100%;
+       position: absolute;
+       left:0%;
+    }
+    .text:before{
+        content:'';
+        position: absolute;
+        top: -5px;
+        left:25%;
+        transform:translate(-50%,-50%);
+        width:70px;
+        height:5px;
+        background: #e74c3c;
+    }
+    
+}
+@media(max-width:825px){
+    .text:before{
+        content:'';
+        position: absolute;
+        top: -5px;
+        left:10%;
+        transform:translate(-50%,-50%);
+        width:70px;
+        height:5px;
+        background: #e74c3c;
+    }
+
+}
+@media(max-width:766px){
+    .text:before{
+        content:'';
+        position: absolute;
+        top: -5px;
+        left:20%;
+        transform:translate(-50%,-50%);
+        width:70px;
+        height:5px;
+        background: #e74c3c;
+    }
+}
+@media(max-width:766px){
+    .text:before{
+        content:'';
+        position: absolute;
+        top: -5px;
+        left:13%;
+        transform:translate(-50%,-50%);
+        width:70px;
+        height:5px;
+        background: #e74c3c;
+    }
+}
+@media(max-width:465px){
+    .text:before{
+        content:'';
+        position: absolute;
+        top: -5px;
+        left:25%;
+        transform:translate(-50%,-50%);
+        width:70px;
+        height:5px;
+        background: #e74c3c;
+    }
+}
+@media(max-width:458px){
+    .text:before{
+        content:'';
+        position: absolute;
+        top: -5px;
+        left:30%;
+        transform:translate(-50%,-50%);
+        width:70px;
+        height:5px;
+        background: #e74c3c;
+    }
+   
+   p{
+
+    display: none;
+   }
+   button{
+       margin-top: 30px;
+   }
+   .upcoming-events{
+       margin-right: 20px;
+   }
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Contest Tracker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body  onload="myfunction()">
+    <div id="loading"></div>
+    <header>
+        <div class="header-block">
+            <div class="text">
+                <h1>Live <span>CP Tracker</span></h1>
+                <p>~See where you stand.<span class="quote">Participate in live Contests and compete <br>with world.</span> <br>
+                </p>
+              
+                <a href="ongoing-contests.html"><button class="ongoing-events">ongoing</button></a>
+                <a href="upcoming-contests.html"><button class="upcoming-events">upcoming</button></a>
+            </div>
+        </div>
+    </header> 
+        <script>
+        var preloader=document.querySelector("#loading");
+        function myfunction(){
+            preloader.style.display="none";
+        }
+    </script>
+</body>
+</html>
