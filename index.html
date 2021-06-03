@@ -7,6 +7,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="evo-calendar.min.css">
+    <link rel="stylesheet" href="evo-calendar.midnight-blue.min.css">
 </head>
 <body  onload="myfunction()">
     <div id="loading"></div>
@@ -22,11 +24,391 @@
             </div>
         </div>
     </header> 
-        <script>
+    <div class="contest-calendar">
+        <div id="calendar"></div>
+    </div>
+    
+    <!--Preloader-->
+    <script>
         var preloader=document.querySelector("#loading");
         function myfunction(){
             preloader.style.display="none";
         }
+    </script>
+    <!--Contest Calender-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+    <script src="evo-calendar.min.js"></script>
+    <script>
+        //Fetching date from API
+        const url="https://contesttrackerapi.herokuapp.com/";
+        let dates =[];
+        let Names =[];
+        let Urls =[];
+        let Names_two =[];
+        let Urls_two =[];
+        function fetchmonth(day){
+        let newday="";
+        if(day == "Jan") newday="January";
+        else if(day == "Feb") newday="February";
+        else if(day == "Mar") newday="March";
+        else if(day == "Apr") newday="April";
+        else if(day == "May") newday="May";
+        else if(day == "Jun") newday="June";
+        else if(day == "Jul") newday="July";
+        else if(day == "Aug") newday="August";
+        else if(day == "Sep") newday="September";
+        else if(day == "Oct") newday="October";
+        else if(day == "Nov") newday="November";
+        else if(day == "Dec") newday="December";
+        else newday="Not available";
+        return newday;
+        }
+        
+        fetch(url)
+        .then(function(apidata){
+            return apidata.json();
+        })
+        .then(function(data){
+            console.log(data);
+            let arr=data.result.upcoming;
+            let arr_two=data.result.ongoing;
+            console.log(arr.length);
+            for(let i=0;i<19;i++){
+                let contest_name=arr[i].Name;
+                let contest_url=arr[i].url;
+                Names.push(contest_name);
+                Urls.push(contest_url);
+                let datedata=arr[i].StartTime;
+                let tempdate = datedata[5] + datedata[6];
+                let tempmonth =datedata[8] + datedata[9] + datedata[10];
+                let fullmonth= fetchmonth(tempmonth);
+                let tempyear= datedata[12]+ datedata[13] +datedata[14] +datedata[15];
+                let finaldate=fullmonth+"/"+tempdate+"/"+tempyear;
+                console.log(finaldate); /// final date format for calender.
+                dates.push(finaldate);
+            }
+            for(let i=0;i<10;i++){
+                let contest_name=arr_two[i].Name;
+                let contest_url=arr_two[i].url;
+                Names_two.push(contest_name);
+                Urls_two.push(contest_url);
+            }
+            
+        //Adding date to calender
+        $(document).ready(function() {
+            $('#calendar').evoCalendar({
+                theme: "Midnight Blue",
+                calendarEvents: [
+                    {
+                        id: 'bHay68s', // Event's ID (required)
+                        name: Names[0], // Event name (required)
+                        date: dates[0], // Event date (required)
+                        description:Urls[0],
+                        type: "event", // Event type (required)
+                        everyYear: false, // Same event every year (optional)
+                        color:"e74c3c"
+                    },
+                    {
+                        id: 'bHay68s', // Event's ID (required)
+                        name: Names[1], // Event name (required)
+                        date: dates[1], // Event date (required)
+                        description:Urls[1],
+                        type: "event", // Event type (required)
+                        everyYear: false, // Same event every year (optional)
+                        color:"e74c3c"
+                    },
+                    {
+                        id: 'bHay68s', // Event's ID (required)
+                        name: Names[2], // Event name (required)
+                        date: dates[2], // Event date (required)
+                        description:Urls[2],
+                        type: "event", // Event type (required)
+                        everyYear: false, // Same event every year (optional)
+                        color:"e74c3c"
+                    },
+                    {
+                        id: 'bHay68s', // Event's ID (required)
+                        name: Names[3], // Event name (required)
+                        date: dates[3], // Event date (required)
+                        description:Urls[3],
+                        type: "event", // Event type (required)
+                        everyYear: false, // Same event every year (optional)
+                        color:"e74c3c"
+                    },
+                    {
+                        id: 'bHay68s', // Event's ID (required)
+                        name: Names[4], // Event name (required)
+                        date: dates[4], // Event date (required)
+                        description:Urls[4],
+                        type: "event", // Event type (required)
+                        everyYear: false, // Same event every year (optional)
+                        color:"e74c3c"
+                    },
+                    {
+                        id: 'bHay68s', // Event's ID (required)
+                        name: Names[5], // Event name (required)
+                        date: dates[5], // Event date (required)
+                        description:Urls[5],
+                        type: "event", // Event type (required)
+                        everyYear: false, // Same event every year (optional)
+                        color:"e74c3c"
+                    },
+                    {
+                        id: 'bHay68s', // Event's ID (required)
+                        name: Names[6], // Event name (required)
+                        date: dates[6], // Event date (required)
+                        description:Urls[6],
+                        type: "event", // Event type (required)
+                        everyYear: false, // Same event every year (optional)
+                        color:"e74c3c"
+                    },
+                    {
+                        id: 'bHay68s', // Event's ID (required)
+                        name: Names[7], // Event name (required)
+                        date: dates[7], // Event date (required)
+                        description:Urls[7],
+                        type: "event", // Event type (required)
+                        everyYear: false, // Same event every year (optional)
+                        color:"e74c3c"
+                    },
+                    {
+                        id: 'bHay68s', // Event's ID (required)
+                        name: Names[8], // Event name (required)
+                        date: dates[8], // Event date (required)
+                        description:Urls[8],
+                        type: "event", // Event type (required)
+                        everyYear: false, // Same event every year (optional)
+                        color:"e74c3c"
+                    },
+                    {
+                        id: 'bHay68s', // Event's ID (required)
+                        name: Names[9], // Event name (required)
+                        date: dates[9], // Event date (required)
+                        description:Urls[9],
+                        type: "event", // Event type (required)
+                        everyYear: false, // Same event every year (optional)
+                        color:"e74c3c"
+                    },
+                    {
+                        id: 'bHay68s', // Event's ID (required)
+                        name: Names[10], // Event name (required)
+                        date: dates[10], // Event date (required)
+                        description:Urls[10],
+                        type: "event", // Event type (required)
+                        everyYear: false, // Same event every year (optional)
+                        color:"e74c3c"
+                    },
+                    {
+                        id: 'bHay68s', // Event's ID (required)
+                        name: Names[11], // Event name (required)
+                        date: dates[11], // Event date (required)
+                        description:Urls[11],
+                        type: "event", // Event type (required)
+                        everyYear: false, // Same event every year (optional)
+                        color:"e74c3c"
+                    },
+                    {
+                        id: 'bHay68s', // Event's ID (required)
+                        name: Names[12], // Event name (required)
+                        date: dates[12], // Event date (required)
+                        description:Urls[12],
+                        type: "event", // Event type (required)
+                        everyYear: false, // Same event every year (optional)
+                        color:"e74c3c"
+                    },
+                    {
+                        id: 'bHay68s', // Event's ID (required)
+                        name: Names[13], // Event name (required)
+                        date: dates[13], // Event date (required)
+                        description:Urls[13],
+                        type: "event", // Event type (required)
+                        everyYear: false, // Same event every year (optional)
+                        color:"e74c3c"
+                    },
+                    {
+                        id: 'bHay68s', // Event's ID (required)
+                        name: Names[14], // Event name (required)
+                        date: dates[14], // Event date (required)
+                        description:Urls[14],
+                        type: "event", // Event type (required)
+                        everyYear: false, // Same event every year (optional)
+                        color:"e74c3c"
+                    },
+                    {
+                        id: 'bHay68s', // Event's ID (required)
+                        name: Names[15], // Event name (required)
+                        date: dates[15], // Event date (required)
+                        description:Urls[15],
+                        type: "event", // Event type (required)
+                        everyYear: false, // Same event every year (optional)
+                        color:"e74c3c"
+                    },
+                    {
+                        id: 'bHay68s', // Event's ID (required)
+                        name: Names[16], // Event name (required)
+                        date: dates[16], // Event date (required)
+                        description:Urls[16],
+                        type: "event", // Event type (required)
+                        everyYear: false, // Same event every year (optional)
+                        color:"e74c3c"
+                    },
+                    {
+                        id: 'bHay68s', // Event's ID (required)
+                        name: Names[17], // Event name (required)
+                        date: dates[17], // Event date (required)
+                        description:Urls[17],
+                        type: "event", // Event type (required)
+                        everyYear: false, // Same event every year (optional)
+                        color:"e74c3c"
+                    },
+                    {
+                        id: 'bHay68s', // Event 's ID (required)
+                        name: Names[18], // Event name (required)
+                        date: dates[18], // Event date (required)
+                        description:Urls[18],
+                        type: "event", // Event type (required)
+                        everyYear: false, // Same event every year (optional)
+                        color:"e74c3c"
+                    },
+                  
+                    // For Today
+                    {
+                        id: 'bHay68s', // Event's ID (required)
+                        name: Names_two[0], // Event name (required)
+                        date: today, // Event date (required)
+                        description:Urls_two[0],
+                        type: "event", // Event type (required)
+                        everyYear: false, // Same event every year (optional)
+                        color:"#63d867",
+                    },
+                    {
+                        id: 'bHay68s', // Event's ID (required)
+                        name: Names_two[1], // Event name (required)
+                        date: today, // Event date (required)
+                        description:Urls_two[1],
+                        type: "event", // Event type (required)
+                        everyYear: false, // Same event every year (optional)
+                        color:"#63d867",
+                    },
+                    {
+                        id: 'bHay68s', // Event's ID (required)
+                        name: Names_two[2], // Event name (required)
+                        date: today, // Event date (required)
+                        description:Urls_two[2],
+                        type: "event", // Event type (required)
+                        everyYear: false, // Same event every year (optional)
+                        color:"#63d867",
+                    },
+                    {
+                        id: 'bHay68s', // Event's ID (required)
+                        name: Names_two[3], // Event name (required)
+                        date: today, // Event date (required)
+                        description:Urls_two[3],
+                        type: "event", // Event type (required)
+                        everyYear: false, // Same event every year (optional)
+                        color:"#63d867",
+                    },
+                    {
+                        id: 'bHay68s', // Event's ID (required)
+                        name: Names_two[4], // Event name (required)
+                        date: today, // Event date (required)
+                        description:Urls_two[4],
+                        type: "event", // Event type (required)
+                        everyYear: false, // Same event every year (optional)
+                        color:"#63d867",
+                    },
+                    {
+                        id: 'bHay68s', // Event's ID (required)
+                        name: Names_two[5], // Event name (required)
+                        date: today, // Event date (required)
+                        description:Urls_two[5],
+                        type: "event", // Event type (required)
+                        everyYear: false, // Same event every year (optional)
+                        color:"#63d867",
+                    },
+                    {
+                        id: 'bHay68s', // Event's ID (required)
+                        name: Names_two[6], // Event name (required)
+                        date: today, // Event date (required)
+                        description:Urls_two[6],
+                        type: "event", // Event type (required)
+                        everyYear: false, // Same event every year (optional)
+                        color:"#63d867",
+                    },
+                    {
+                        id: 'bHay68s', // Event's ID (required)
+                        name: Names_two[7], // Event name (required)
+                        date: today, // Event date (required)
+                        description:Urls_two[7],
+                        type: "event", // Event type (required)
+                        everyYear: false, // Same event every year (optional)
+                        color:"#63d867",
+                    },
+                    {
+                        id: 'bHay68s', // Event's ID (required)
+                        name: Names_two[8], // Event name (required)
+                        date: today, // Event date (required)
+                        description:Urls_two[8],
+                        type: "event", // Event type (required)
+                        everyYear: false, // Same event every year (optional)
+                        color:"#63d867",
+                    },
+                    {
+                        id: 'bHay68s', // Event's ID (required)
+                        name: Names_two[9], // Event name (required)
+                        date: today, // Event date (required)
+                        description:Urls_two[9],
+                        type: "event", // Event type (required)
+                        everyYear: false, // Same event every year (optional)
+                        color:"#63d867",
+                    }
+
+                ]
+            })
+        })
+        // console.log(dates);
+    })
+    .catch(function(error){
+        console.log(error);
+    });
+
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; 
+var yyyy = today.getFullYear();
+function fetchmonth_two(day){
+    let newday="";
+        if(day == 01) newday="January";
+        else if(day == 02) newday="February";
+        else if(day == 03) newday="March";
+        else if(day == 04) newday="April";
+        else if(day == 05) newday="May";
+        else if(day == 06) newday="June";
+        else if(day == 07) newday="July";
+        else if(day == 08) newday="August";
+        else if(day == 09) newday="September";
+        else if(day == 10) newday="October";
+        else if(day == 11) newday="November";
+        else if(day == 12) newday="December";
+        else newday="Not available";
+        return newday;
+}
+if(dd<10) 
+{
+    dd='0'+dd;
+} 
+
+if(mm<10) 
+{
+    mm='0'+mm;
+} 
+var today_month=fetchmonth_two(mm);
+
+console.log("yauysuia TODAYYYY");
+
+today = today_month+'/'+dd+'/'+yyyy;
+console.log(today);
+
     </script>
 </body>
 </html>

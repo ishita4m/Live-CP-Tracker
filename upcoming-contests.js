@@ -4,11 +4,27 @@ const date = document.getElementsByClassName("actual-date");
 const platformhead=document.getElementsByClassName("platform-name");
 const link=document.querySelectorAll(".visit-btn");
 const duration=document.querySelectorAll(".actual-duration");
-//const body=document.querySelector("body");
-//const preloader=document.querySelector("#loading");
-//body.addEventListener("onload",function(){
-    //preloader.style.display="none";
-//});
+let dates =[];
+
+
+function fetchmonth(day){
+   let newday="";
+   if(day == "Mon") newday="Monday";
+   else if(day == "Jan") newday="January";
+   else if(day == "Feb") newday="February";
+   else if(day == "Mar") newday="March";
+   else if(day == "Apr") newday="April";
+   else if(day == "May") newday="May";
+   else if(day == "Jun") newday="June";
+   else if(day == "Jul") newday="July";
+   else if(day == "Aug") newday="August";
+   else if(day == "Sep") newday="September";
+   else if(day == "Oct") newday="October";
+   else if(day == "Nov") newday="November";
+   else if(day == "Dec") newday="December";
+   else newday="Not available";
+   return newday;
+}
 function urlfetch(platform){
     let logourl=" ";
     if(platform==="HACKEREARTH"){
@@ -33,41 +49,34 @@ fetch(url)
     return apidata.json();
  })
  .then(function(data){
-     //console.log(data);
+     console.log(data);
      let arr=data.result.upcoming;
      console.log(arr.length);
-     //let platform=arr[1].Platform;
-     //console.log(platform)
-     //myurl=urlfetch(platform);
-     //console.log(myurl)
-     //image[0].setAttribute("src",myurl);
-     //let name=arr[1].Name;
-     //h5[0].textContent=name;
-     //let date=arr[1].StartTime;
-     //date[0].textContent=date;
-     //let duration=arr[1].Duration;
-     //duration[0].textContent=duration;
     for(let i=0;i<12;i++){
         let platform=arr[i].Platform;
-        console.log(platform);
         let myurl=urlfetch(platform);
-        //console.log(myurl);
         image[i].setAttribute("src",myurl);
         let datedata=arr[i].StartTime;
+        let tempdate = datedata[5] + datedata[6];
+        let tempmonth =datedata[8] + datedata[9] + datedata[10];
+        console.log(tempmonth);
+        let fullmonth= fetchmonth(tempmonth);
+        let tempyear= datedata[12]+ datedata[13] +datedata[14] +datedata[15];
+        let finaldate=fullmonth+"/"+tempdate+"/"+tempyear;
+        console.log(finaldate); /// final date format for calender.
+        dates.push(finaldate);
         date[i].innerHTML=datedata;
         let name=arr[i].Name;
         platformhead[i].innerHTML=name;
-        //let datedata=arr[i].StartTime
-        //console.log(datedata);
-        //date[i].textContent=datedata;
         let durationdata=arr[i].Duration;
         duration[i].textContent=durationdata;
         let contestlink=arr[i].url;
-        console.log(contestlink);
         link[i].setAttribute("href",contestlink);
     }
 
+    // console.log(dates);
  })
  .catch(function(error){
      console.log(error);
  });
+
